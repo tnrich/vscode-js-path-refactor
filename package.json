@@ -1,50 +1,53 @@
 {
-  "name": "js-path-refactor",
-  "displayName": "js-path-refactor",
-  "description":
-    "Simple helper for changing the path/name of a given file/folder and updating all related import statements in a project",
-  "version": "0.0.1",
-  "publisher": "tnrich",
-  "engines": {
-    "vscode": "^1.16.0"
-  },
-  "categories": ["Other"],
-  "activationEvents": ["onCommand:extension.jsRefactorMove"],
-  "main": "./out/src/extension",
-  "contributes": {
-    "commands": [
-      {
-        "command": "extension.jsRefactorMove",
-        "title": "JS Refactor - Move/Rename"
-      }
+    "name": "js-path-refactor",
+    "displayName": "js-path-refactor",
+    "description": "Simple helper for changing the path/name of a given file/folder and updating all related import statements in a project",
+    "version": "0.0.2",
+    "publisher": "tnrich",
+    "engines": {
+        "vscode": "^1.16.0"
+    },
+    "categories": [
+        "Other"
     ],
-    "menus": {
-      "explorer/context": [
-        {
-          "command": "extension.jsRefactorMove",
-          "group": "JS Refactor@1"
+    "activationEvents": [
+        "onCommand:extension.jsRefactorMove"
+    ],
+    "main": "./out/src/extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "extension.jsRefactorMove",
+                "title": "JS Refactor - Move/Rename"
+            }
+        ],
+        "menus": {
+            "explorer/context": [
+                {
+                    "command": "extension.jsRefactorMove",
+                    "group": "JS Refactor@1"
+                }
+            ]
         }
-      ]
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.5.2",
+        "vscode": "^1.1.5",
+        "mocha": "^3.5.0",
+        "@types/node": "^7.0.43",
+        "@types/mocha": "^2.2.42"
+    },
+    "dependencies": {
+        "fs-plus": "^3.0.1",
+        "jscodeshift": "^0.3.32",
+        "path": "^0.12.7",
+        "refactoring-codemods": "^0.3.2"
     }
-  },
-  "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "postinstall": "node ./node_modules/vscode/bin/install",
-    "test": "npm run compile && node ./node_modules/vscode/bin/test"
-  },
-  "devDependencies": {
-    "typescript": "^2.5.2",
-    "vscode": "^1.1.5",
-    "mocha": "^3.5.0",
-    "@types/node": "^7.0.43",
-    "@types/mocha": "^2.2.42"
-  },
-  "dependencies": {
-    "fs-plus": "^3.0.1",
-    "jscodeshift": "^0.3.32",
-    "path": "^0.12.7",
-    "refactoring-codemods": "^0.3.2"
-  }
 }
