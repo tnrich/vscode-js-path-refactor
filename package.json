@@ -2,7 +2,7 @@
     "name": "js-path-refactor",
     "displayName": "js-path-refactor",
     "description": "Simple helper for changing the path/name of a given file/folder and updating all related import statements in a project",
-    "version": "0.0.2",
+    "version": "0.0.6",
     "publisher": "tnrich",
     "engines": {
         "vscode": "^1.16.0"
@@ -37,6 +37,7 @@
         "postinstall": "node ./node_modules/vscode/bin/install",
         "test": "npm run compile && node ./node_modules/vscode/bin/test"
     },
+    "icon": "frank.png",
     "devDependencies": {
         "typescript": "^2.5.2",
         "vscode": "^1.1.5",
