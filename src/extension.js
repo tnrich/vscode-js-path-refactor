@@ -21,17 +21,31 @@ export function activate(context) {
         // Display a message box to the user
         const previousPath = e ? e.path : vscode.window.activeTextEditor.document.fileName
         vscode.window.showInputBox({
+            prompt: 'Move/Rename to',
             value: previousPath
         }).then(function (nextPath) {
             if (!nextPath) {
                 return
             }
-            return renamePaths(previousPath, nextPath)
+            return vscode.window.showInputBox({
+                prompt: 'Choose path to fix in',
+                value: previousPath
+            }).then((searchInPath) => {
+                return vscode.window.withProgress({
+                    location: vscode.ProgressLocation.Window,
+                    title: 'Refactoring paths...'
+                }, () => {
+                    // Progress is shown while this function runs.
+                    // It can also return a promise which is then awaited
+                    return renamePaths(previousPath, nextPath, searchInPath).catch((e) => {
+                        console.error('error12312', e)
+                        vscode.window.showErrorMessage(e.message)
+                    })
+                })
+            })
         }).catch((e) => {
-            console.log('error12312', e)
+            console.error('error12312', e)
             vscode.window.showErrorMessage(e.message)
-        }).finally(function () {
-            console.log('we finished!')
         })
     });
     context.subscriptions.push(disposable);

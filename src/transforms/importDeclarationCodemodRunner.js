@@ -1,7 +1,9 @@
-import transform from 'refactoring-codemods/lib/transformers/import-declaration-transform';
 import {run} from 'jscodeshift/dist/Runner';
 import DEFAULT_OPTIONS from './constants';
 
+const transform = require.resolve(
+  '../transformers/import-declaration-transform'
+);
 
 export default function importDeclarationCodemodRunner(
   roots,

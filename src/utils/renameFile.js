@@ -30,7 +30,7 @@ export default function renameFile(previousPath, nextPath) {
     moveSync(previousPath, nextPath);
     return true;
   } catch (e) {
-    console.log('e15151:',e)
+    console.error('error15151:',e)
     vscode.window.showErrorMessage(e.message);
     return false;
   }
